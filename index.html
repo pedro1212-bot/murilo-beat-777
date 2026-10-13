@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Murilo Beat 777 — Arcade Demo</title>
+<style>
+:root{--gold:#ffd34e;--red:#e52924;--green:#19d86b;--bg:#090909}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#50150d 0,#160b08 44%,#050505 100%);color:#fff;font-family:system-ui,-apple-system,Segoe UI,sans-serif}
+header{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:13px 14px;background:#080808;border-bottom:2px solid var(--gold);position:sticky;top:0;z-index:3}.brand{font-weight:950;font-size:clamp(16px,4vw,23px);color:var(--gold)}.demo{font-size:11px;color:#ffb8ad;border:1px solid #9d342b;border-radius:8px;padding:6px}
+main{max-width:850px;margin:auto;padding:14px 12px 28px}.hero{text-align:center;padding:16px 8px}.tiger{font-size:65px;filter:drop-shadow(0 0 13px #ff9d00)}h1{font-size:clamp(35px,9vw,58px);line-height:.95;margin:6px 0;color:var(--gold);text-shadow:3px 4px 0 #9d170e}.sub{color:#ffe9a2;font-weight:800}
+.notice{margin:10px auto 18px;background:#32110e;border:1px solid #ff5145;border-radius:12px;padding:11px;text-align:center;color:#ffd9d5;font-size:13px;font-weight:750}
+h2{font-size:19px;margin:20px 2px 10px}.games{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.game{min-height:116px;text-align:left;border:1px solid #8e6014;border-radius:14px;padding:12px;color:#fff;background:linear-gradient(145deg,#35180b,#101010);cursor:pointer}.game.selected{outline:3px solid var(--gold);background:linear-gradient(145deg,#5c2709,#211006)}.emoji{font-size:35px;display:block}.game strong{display:block;color:var(--gold);font-size:16px;margin-top:4px}.game small{color:#ddd}.panel{border:3px solid #b77810;border-radius:18px;padding:12px;background:linear-gradient(145deg,#3b1c06,#080808 55%,#482005);box-shadow:0 0 25px #ff8c0028;margin-top:16px}.gameTitle{text-align:center;font-size:22px;font-weight:950;color:var(--gold);padding:4px}.reels{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.reel{min-height:90px;display:grid;place-items:center;font-size:clamp(38px,11vw,64px);background:linear-gradient(#180d08,#030303);border:2px solid #9b6715;border-radius:10px}.status{text-align:center;min-height:42px;padding:12px 4px;color:var(--gold);font-weight:850}.btn{border:0;border-radius:12px;padding:14px 10px;font-weight:900;font-size:15px;cursor:pointer}.spin{background:linear-gradient(#29f27d,#078b3b);color:#041b0c;border:2px solid #baffd0}.secondary{background:#1d1d1d;color:var(--gold);border:1px solid #a5751c}.controls{display:grid;grid-template-columns:1fr 1fr;gap:9px}.info{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:10px}.tile{background:#111;border:1px solid #4b3510;border-radius:10px;text-align:center;padding:9px 3px;color:#f7d978;font-size:12px}
+footer{text-align:center;color:#aaa;font-size:12px;padding:20px 8px}
+@media(max-width:390px){.games{grid-template-columns:1fr 1fr}.game{padding:9px;min-height:108px}.reel{min-height:75px}.info{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header><div class="brand">👑 MURILO BEAT 777</div><div class="demo">DEMO • SEM DINHEIRO REAL</div></header>
+<main>
+<section class="hero"><div class="tiger">🐯</div><h1>MURILO BEAT 777</h1><div class="sub">ESCOLHA SEU MINI-GAME!</div></section>
+<div class="notice">⚠️ PROTÓTIPO DE BRINCADEIRA: sem apostas, depósitos, saques, pagamentos ou prêmios reais. Os pontos são apenas decorativos.</div>
+<h2>🎮 Escolha um jogo</h2>
+<section class="games" id="games">
+<button class="game selected" data-game="tiger"><span class="emoji">🐯</span><strong>Tigrinho da Sorte</strong><small>Giros de demonstração</small></button>
+<button class="game" data-game="bull"><span class="emoji">🐂</span><strong>Touro Dourado</strong><small>Símbolos da fortuna</small></button>
+<button class="game" data-game="rocket"><span class="emoji">🚀</span><strong>Foguetinho</strong><small>Animação de lançamento</small></button>
+<button class="game" data-game="treasure"><span class="emoji">💎</span><strong>Caça ao Tesouro</strong><small>Combine joias fictícias</small></button>
+<button class="game" data-game="dragon"><span class="emoji">🐉</span><strong>Dragão de Ouro</strong><small>Mini-game de símbolos</small></button>
+<button class="game" data-game="fruit"><span class="emoji">🍊</span><strong>Frutas 777</strong><small>Giros coloridos</small></button>
+<button class="game" data-game="lucky"><span class="emoji">🧧</span><strong>Envelope da Sorte</strong><small>Surpresa visual</small></button>
+<button class="game" data-game="crown"><span class="emoji">👑</span><strong>Rei do 777</strong><small>Desafio de combinações</small></button>
+</section>
+<section class="panel">
+<div class="gameTitle" id="gameTitle">🐯 Tigrinho da Sorte</div>
+<div class="reels"><div class="reel" id="r0">🐯</div><div class="reel" id="r1">🪙</div><div class="reel" id="r2">🍊</div></div>
+<div class="status" id="status" aria-live="polite">Escolha um mini-game e aperte GIRAR.</div>
+<div class="controls"><button class="btn secondary" id="reset">REINICIAR</button><button class="btn spin" id="spin">🎰 GIRAR</button></div>
+<div class="info"><div class="tile">🎮 MODO ARCADE</div><div class="tile">💸 SEM APOSTAS</div><div class="tile">🚫 SEM SAQUES</div></div>
+</section>
+</main>
+<footer>Murilo Beat 777 é um protótipo de entretenimento. Não é uma plataforma de apostas e não processa dinheiro real.</footer>
+<script>
+const games={
+ tiger:{name:"🐯 Tigrinho da Sorte",symbols:["🐯","🪙","🍊","👑","🎋","7️⃣"]},
+ bull:{name:"🐂 Touro Dourado",symbols:["🐂","🪙","🌟","👑","💰","7️⃣"]},
+ rocket:{name:"🚀 Foguetinho",symbols:["🚀","🌙","⭐","☄️","🪐","✨"]},
+ treasure:{name:"💎 Caça ao Tesouro",symbols:["💎","🔷","🟣","🟢","👑","✨"]},
+ dragon:{name:"🐉 Dragão de Ouro",symbols:["🐉","🔥","🪙","🏮","👑","7️⃣"]},
+ fruit:{name:"🍊 Frutas 777",symbols:["🍊","🍉","🍋","🍇","🍒","7️⃣"]},
+ lucky:{name:"🧧 Envelope da Sorte",symbols:["🧧","🏮","🪙","🐯","🌟","🍊"]},
+ crown:{name:"👑 Rei do 777",symbols:["👑","💎","🪙","7️⃣","🐯","🌟"]}
+};
+let current="tiger";
+const $=id=>document.getElementById(id);
+document.querySelectorAll(".game").forEach(btn=>btn.addEventListener("click",()=>{
+ current=btn.dataset.game;
+ document.querySelectorAll(".game").forEach(b=>b.classList.toggle("selected",b===btn));
+ $("gameTitle").textContent=games[current].name;
+ $("status").textContent="Mini-game selecionado! Aperte GIRAR para brincar.";
+ const s=games[current].symbols; [0,1,2].forEach(i=>$("r"+i).textContent=s[i]);
+}));
+$("spin").addEventListener("click",()=>{
+ const s=games[current].symbols;
+ const vals=[0,1,2].map(()=>s[Math.floor(Math.random()*s.length)]);
+ vals.forEach((v,i)=>$("r"+i).textContent=v);
+ $("status").textContent=vals.every(v=>v===vals[0])?"✨ Combinação visual! Não há prêmio real.":"Rodada concluída! Só diversão — nenhum dinheiro envolvido.";
+});
+$("reset").addEventListener("click",()=>{
+ const s=games[current].symbols; [0,1,2].forEach(i=>$("r"+i).textContent=s[i]);
+ $("status").textContent="Reiniciado. Escolha outro jogo quando quiser.";
+});
+</script>
+</body></html>

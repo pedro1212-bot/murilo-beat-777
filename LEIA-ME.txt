@@ -1,0 +1,9 @@
+Murilo Beat 777 — protótipo de mini-games fictícios
+
+Inclui oito temas visuais e giros aleatórios apenas para diversão. Não tem apostas, cadastro, depósitos, saques, pagamentos nem prêmios reais.
+
+Para publicar como link:
+1. Crie um repositório público no GitHub.
+2. Envie index.html para a raiz do repositório.
+3. Em Settings > Pages, selecione Deploy from a branch, branch main, pasta / (root), e salve.
+4. Aguarde o GitHub Pages mostrar o endereço público.
